@@ -33,7 +33,7 @@ class SongsController < ApplicationController
   end
 
   def new
-    if !Preference.allow_create_songs
+    if @preferences && !@preferences.allow_create_songs
       redirect_to songs_path
     else
       @song = Song.new
@@ -51,17 +51,7 @@ class SongsController < ApplicationController
   end
 
   def edit
-    if params[:artist_id]
-      artist = Artist.find_by(id: params[:artist_id])
-      if artist.nil?
-        redirect_to artists_path
-      else
-        @song = artist.songs.find_by(id: params[:id])
-        redirect_to artist_songs_path(artist)
-      end
-    else
-      @song = Song.find(params[:id])
-    end
+    @song = Song.find(params[:id])
   end
 
   def update

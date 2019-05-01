@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :artists do
-    resources :posts
+    resources :posts, only: [:index, :show]
   end
 
   resources :posts

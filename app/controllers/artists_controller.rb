@@ -12,7 +12,7 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    if !Preference.allow_create_artists
+    if @preferences && !@preferences.allow_create_artists
       redirect_to artists_path
     else
       @artist = Artist.new
@@ -35,7 +35,6 @@ class ArtistsController < ApplicationController
 
   def update
     @artist = Artist.find(params[:id])
-
     @artist.update(artist_params)
 
     if @artist.save

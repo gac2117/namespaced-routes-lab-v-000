@@ -30,3 +30,4 @@ module DisplayingAssociationsRailsLab
 end
 
 Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+Rails.application.config.active_record.belongs_to_required_by_default = false

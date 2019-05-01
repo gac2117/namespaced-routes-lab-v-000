@@ -12,6 +12,8 @@ class SongsController < ApplicationController
       else
         @songs = @artist.songs
       end
+    elsif @preferences && @preferences.song_sort_order
+      @songs = @artist.songs.order(title: @preferences.song_sort_order)
     else
       @songs = Song.all
     end
